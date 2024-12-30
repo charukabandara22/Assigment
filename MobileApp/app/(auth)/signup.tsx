@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { NavigationProp } from '@react-navigation/native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { router } from "expo-router";
 
-export default function SignUp({ navigation }: { navigation: NavigationProp<any> }) {
+export default function SignUp() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,28 +17,24 @@ export default function SignUp({ navigation }: { navigation: NavigationProp<any>
       newError.username = 'Username is required.';
       isValid = false;
     }
-
     if (!email || !emailPattern.test(email)) {
       newError.email = 'Please enter a valid email address.';
       isValid = false;
     }
-
     if (!password || password.length < 6) {
       newError.password = 'Password must be at least 6 characters.';
       isValid = false;
     }
-
     setError(newError);
     return isValid;
   };
 
   const handleSignUp = () => {
     if (validateInputs()) {
-      // Proceed with sign-up logic (e.g., API call)
-      Alert.alert('Success', 'Sign-up successful!');
+     router.push(`/home?username=${username}`);
     }
   };
-
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Sign Up</Text>
@@ -103,7 +98,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#fff',
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: 30,
   },
   input: {
     width: '100%',
@@ -112,7 +107,7 @@ const styles = StyleSheet.create({
     borderColor: '#333',
     backgroundColor: '#000',
     padding: 15,
-    marginBottom: 5,
+    marginBottom: 10,
     borderRadius: 8,
     color: '#fff',
   },

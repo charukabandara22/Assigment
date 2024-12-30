@@ -10,6 +10,7 @@ import {
   SafeAreaView,
   ScrollView,
   View,
+  ImageBackground,
 } from "react-native";
 import { HelloWave } from "@/components/HelloWave";
 import { ThemedView } from "@/components/ThemedView";
@@ -23,8 +24,8 @@ export default function HomeScreen() {
             <ThemedText type="title">Welcome!</ThemedText>
             <HelloWave />
           </ThemedView>
-          <ThemedView style={styles.titleContainer}>
-            <ThemedText type="title" style={{ textAlign: "center", marginBottom: 20 }}>
+          <ThemedView style={styles.container}>
+            <ThemedText type="title" style={{ textAlign: "center", marginBottom: 20 , lineHeight: 40}}>
               Discover Endless Possibilities with{"\n"}
               <ThemedText
                 type="title"
@@ -39,10 +40,14 @@ export default function HomeScreen() {
             </ThemedText>
           </ThemedView>
 
-          <Image
+          <ImageBackground
             source={require("../assets/images/logo.png")}
             style={styles.reactLogo}
-          />
+            imageStyle={styles.logoImage}
+            blurRadius={3} 
+          >
+          </ImageBackground>
+
           <Text
             style={{
               fontFamily: "SpaceMono",
@@ -90,6 +95,11 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     position: "absolute",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  logoImage: {
+    borderRadius: 10,
   },
   titleContainer: {
     flexDirection: "row",
@@ -97,7 +107,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 8,
     backgroundColor: "#010117",
-    marginBottom: 40,
+    marginBottom: 60,
   },
   container: {
     flex: 1,
@@ -148,7 +158,7 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: "center",
     alignItems: "center",
-    width: "20%",
+    width: "40%",
     fontFamily: "SpaceMono",
     marginTop: 90,
   },
@@ -171,10 +181,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-  },
-  Logo: {
-    height: 350,
-    width: 350,
-    margin: 20,
   },
 });

@@ -1,9 +1,22 @@
-import React from 'react'
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Tabs } from "expo-router";
+import { LikeProvider } from "@/contexts/LikeContext";
 
-const TabsLayout = () => {
+import HomeScreen from "./home"; 
+
+const Tab = createBottomTabNavigator();
+
+const TabLayout = () => {
   return (
-    <div>_layout</div>
-  )
-}
+    <LikeProvider>
+      <Tab.Navigator>
+        <Tab.Screen 
+        name="Home" 
+        component={HomeScreen} />
+      </Tab.Navigator>
+    </LikeProvider>
+  );
+};
 
-export default TabsLayout
+export default TabLayout;   
